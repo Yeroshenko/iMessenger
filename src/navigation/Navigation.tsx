@@ -1,7 +1,11 @@
 import React, { FC } from 'react'
-import { AuthNavigation } from './AuthNavigation'
+import { NavigationContainer } from '@react-navigation/native'
 
-export const Navigation: FC = () => {
-  // const isAuth = false
-  return <AuthNavigation />
-}
+import { AuthNavigation } from './AuthNavigation'
+import { RootNavigation } from './RootNavigation'
+
+const isAuth = true
+
+export const Navigation: FC = () => (
+  <NavigationContainer>{isAuth ? <RootNavigation /> : <AuthNavigation />}</NavigationContainer>
+)

@@ -5,7 +5,6 @@ import {
   StackCardInterpolationProps,
   TransitionSpecs
 } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
 
 import { SignIn, SignUp } from '../screens/Auth'
 import { NAVIGATION } from '../constants'
@@ -42,19 +41,17 @@ const MyTransition = {
 }
 
 export const AuthNavigation: FC = () => (
-  <NavigationContainer>
-    <Navigator
-      headerMode='none'
-      initialRouteName={NAVIGATION.SIGN_IN}
-      /*  TODO: Fix ts warning */
-      /* @ts-ignore */
-      screenOptions={{
-        cardOverlayEnabled: true,
-        gestureEnabled: true,
-        ...MyTransition
-      }}>
-      <Screen name={NAVIGATION.SIGN_IN} component={SignIn} />
-      <Screen name={NAVIGATION.SIGN_UP} component={SignUp} />
-    </Navigator>
-  </NavigationContainer>
+  <Navigator
+    headerMode='none'
+    initialRouteName={NAVIGATION.SIGN_IN}
+    /*  TODO: Fix ts warning */
+    /* @ts-ignore */
+    screenOptions={{
+      cardOverlayEnabled: true,
+      gestureEnabled: true,
+      ...MyTransition
+    }}>
+    <Screen name={NAVIGATION.SIGN_IN} component={SignIn} />
+    <Screen name={NAVIGATION.SIGN_UP} component={SignUp} />
+  </Navigator>
 )
