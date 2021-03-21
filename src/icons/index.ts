@@ -1,2 +1,6 @@
 export * from './Messages'
 export * from './Profile'
+export * from './Settings'
+export * from './Google'
+export * from './Facebook'
+export * from './Github'

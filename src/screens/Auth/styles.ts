@@ -19,3 +19,10 @@ export const AuthLink = styled.TouchableOpacity`
   justify-content: center;
   margin-top: 40px;
 `
+
+export const SocialButtons = styled.View`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`

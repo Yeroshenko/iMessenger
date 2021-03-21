@@ -6,6 +6,7 @@ export const theme: DefaultTheme = {
     white: '#F6F8FD',
     lightblue: '#E9EFFD',
     primary: '#4460F1',
+    grey: '#A9A6B6',
     dark: '#2C385B'
   },
   fonts: {
