@@ -1,6 +1,11 @@
 import React from 'react'
 import { Text } from 'react-native'
+import { ScreenLayout } from '../../components'
 
 export const Profile = () => {
-  return <Text>Profile</Text>
+  return (
+    <ScreenLayout>
+      <Text>Profile info</Text>
+    </ScreenLayout>
+  )
 }

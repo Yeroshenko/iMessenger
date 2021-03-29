@@ -1,6 +1,11 @@
 import React from 'react'
 import { Text } from 'react-native'
+import { ScreenLayout } from '../../components'
 
 export const Settings = () => {
-  return <Text>Settings</Text>
+  return (
+    <ScreenLayout>
+      <Text>Settings</Text>
+    </ScreenLayout>
+  )
 }

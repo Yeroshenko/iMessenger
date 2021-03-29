@@ -7,7 +7,7 @@ import { theme } from './src/global-styles'
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
       <StatusBar backgroundColor={theme.colors.ultraWhite} barStyle={'dark-content'} />
       <Navigation />
     </ThemeProvider>
