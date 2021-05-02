@@ -1,13 +1,19 @@
 import React from 'react'
-import { ScreenLayout } from '../../components'
-import { SearchIcon } from '../../icons'
-import { Text } from 'react-native'
+import { Alert  } from 'react-native'
+import Icon from 'react-native-vector-icons/Feather'
+
+
+import { DialogItem, ScreenLayout } from '../../components'
+import { theme } from '../../global-styles'
 
 export const Messages = () => {
   return (
-    <ScreenLayout title='Messages' right={<SearchIcon size={22} />}
-                  onRightButtonPress={() => console.log('click')}>
-      <Text>Messages List</Text>
+    <ScreenLayout
+      title='Messages'
+      right={<Icon size={22} name='search' color={theme.colors.dark} />}
+      onRightButtonPress={() => Alert.alert('click')}
+    >
+      <DialogItem />
     </ScreenLayout>
   )
 }

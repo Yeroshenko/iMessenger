@@ -1,12 +1,14 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-vector-icons/Feather'
 
 import { NAVIGATION } from '../constants'
+import { theme } from '../global-styles'
+import { TabBarIcon } from '../components'
+
 import { Messages } from '../screens/Messages'
 import { Profile } from '../screens/Profile'
 import { Settings } from '../screens/Settings'
-import { MessagesIcon, ProfileIcon, SettingsIcon } from '../icons'
-import { theme } from '../global-styles'
 
 export const RootNavigation = () => {
   const Tab = createBottomTabNavigator()
@@ -32,17 +34,32 @@ export const RootNavigation = () => {
       <Tab.Screen
         name={NAVIGATION.MESSAGES}
         component={Messages}
-        options={{ tabBarIcon: ({ color, size }) => <MessagesIcon color={color} size={size} /> }}
+        options={{
+          tabBarIcon: ({ color, size, focused }) =>
+            <TabBarIcon color={color} focused={focused}>
+              <Icon color={color} name='message-square' size={size} />
+            </TabBarIcon>
+        }}
       />
       <Tab.Screen
         name={NAVIGATION.PROFILE}
         component={Profile}
-        options={{ tabBarIcon: ({ color, size }) => <ProfileIcon color={color} size={size} /> }}
+        options={{
+          tabBarIcon: ({ color, size, focused }) =>
+            <TabBarIcon color={color} focused={focused}>
+              <Icon color={color} name='user' size={size} />
+            </TabBarIcon>
+        }}
       />
       <Tab.Screen
         name={NAVIGATION.SETTINGS}
         component={Settings}
-        options={{ tabBarIcon: ({ color, size }) => <SettingsIcon color={color} size={size} /> }}
+        options={{
+          tabBarIcon: ({ color, size, focused }) =>
+            <TabBarIcon color={color} focused={focused}>
+              <Icon color={color} name='settings' size={size} />
+            </TabBarIcon>
+        }}
       />
     </Tab.Navigator>
   )

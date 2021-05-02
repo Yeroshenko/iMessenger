@@ -7,7 +7,8 @@ export const theme: DefaultTheme = {
     lightblue: '#E9EFFD',
     primary: '#4460F1',
     grey: '#A9A6B6',
-    dark: '#2C385B'
+    dark: '#2C385B',
+    success: '#56F396'
   },
   fonts: {
     mainLight: 'Montserrat-Light',
