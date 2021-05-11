@@ -7,5 +7,10 @@ import { RootNavigation } from './RootNavigation'
 const isAuth = true
 
 export const Navigation: FC = () => (
-  <NavigationContainer>{isAuth ? <RootNavigation /> : <AuthNavigation />}</NavigationContainer>
+    <NavigationContainer>
+      {isAuth
+        ? <RootNavigation />
+        : <AuthNavigation />
+      }
+    </NavigationContainer>
 )
