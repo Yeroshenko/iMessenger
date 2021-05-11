@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "925956556129",
+    "project_id": "messenger-mob",
+    "storage_bucket": "messenger-mob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925956556129:android:29f9bf544d3065f3ab7120",
+        "android_client_info": {
+          "package_name": "com.imessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925956556129-s5lhts9tadmbeuelobuk3rc1lo92c6uf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.imessenger",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "925956556129-k2gsv2ftt41fuh81ktqa84enef7k42gt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQcicgbrJw79lbBkZLL0ewYlRgtCjXE5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "925956556129-k2gsv2ftt41fuh81ktqa84enef7k42gt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "925956556129-abk3as7k1lt9p1poqq6dq3gp2oj8eoep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iMessenger"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
