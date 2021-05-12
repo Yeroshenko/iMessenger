@@ -2,13 +2,14 @@ import React, { FC } from 'react'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useNavigation } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
 
+import { useNavigation } from '@react-navigation/native'
 import { NAVIGATION } from '../../constants'
 import { Button, Input, ScreenContainer } from '../../components'
 import { AuthLink, AuthLinkText, AuthTitle } from './styles'
 import { IRegisterData } from '../../@interfaces'
-import { Alert } from 'react-native'
+import { register } from '../../store/slices/auth'
 
 const inputStyle = { marginBottom: 28 }
 
@@ -17,6 +18,7 @@ interface IFormData extends IRegisterData {
 }
 
 export const SignUp: FC = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation()
 
   const { handleSubmit, control, formState: { errors } } = useForm({
@@ -33,7 +35,7 @@ export const SignUp: FC = () => {
   const navigateToSignIn = () => navigation.navigate(NAVIGATION.SIGN_IN)
 
   const registerHandler = handleSubmit(async (formData: IFormData) => {
-    Alert.alert(JSON.stringify(formData))
+    dispatch(register(formData))
   })
 
   return (

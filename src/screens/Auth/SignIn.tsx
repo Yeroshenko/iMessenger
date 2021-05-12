@@ -3,20 +3,24 @@ import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { NAVIGATION } from '../../constants'
 import { FacebookIcon, GithubIcon, GoogleIcon } from '../../icons'
-import { Button, Divider, Input, ScreenContainer, SocialButton } from '../../components'
+import { Button, Divider, Input, ProgressLoader, ScreenContainer, SocialButton } from '../../components'
 import { AuthLink, AuthLinkText, AuthTitle, SocialButtons } from './styles'
 import { ILoginData } from '../../@interfaces'
-import { Alert } from 'react-native'
+import { AppState } from '../../store'
+import { login } from '../../store/slices/auth'
 
 const inputStyle = { marginBottom: 28 }
 const socialButtonStyle = { flex: 1, maxWidth: '30%' }
 
 
 export const SignIn: FC = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation()
+  const { isLoading } = useSelector((state: AppState) => state.auth)
 
   const { handleSubmit, control, formState: { errors } } = useForm({
     mode: 'onTouched',
@@ -29,11 +33,12 @@ export const SignIn: FC = () => {
   const navigateToSignUp = () => navigation.navigate(NAVIGATION.SIGN_UP)
 
   const loginHandler = handleSubmit(async (formData: ILoginData) => {
-    Alert.alert(JSON.stringify(formData))
+    dispatch(login(formData))
   })
 
   return (
     <ScreenContainer>
+      <ProgressLoader visible={isLoading} />
       <AuthTitle>Sign in to iMessenger</AuthTitle>
       <Input placeholder='Email' name='email' keyboardType='email-address' style={inputStyle} control={control}
              errorText={errors.email?.message} hasError={errors.email} />

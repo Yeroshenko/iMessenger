@@ -1,16 +1,21 @@
 import React, { FC } from 'react'
+import { useSelector } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native'
 
 import { AuthNavigation } from './AuthNavigation'
 import { RootNavigation } from './RootNavigation'
+import { AppState } from '../store'
 
-const isAuth = false
+export const Navigation: FC = () => {
+  const { user } = useSelector((state: AppState) => state.auth)
 
-export const Navigation: FC = () => (
+  return (
     <NavigationContainer>
-      {isAuth
+      {!!user
         ? <RootNavigation />
         : <AuthNavigation />
       }
     </NavigationContainer>
-)
+  )
+
+}

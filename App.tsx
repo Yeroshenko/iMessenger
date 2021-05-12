@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { FC, useEffect } from 'react'
 import { StatusBar, View } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
+import { PersistGate } from 'redux-persist/integration/react'
 
+import { Provider as StoreProvider } from 'react-redux'
 import { Navigation } from './src/navigation/Navigation'
 import { theme } from './src/global-styles'
 import { statusBarHeight } from './src/utils'
+import { persistor, store } from './src/store'
+import { checkAuth } from './src/store/slices/auth'
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar backgroundColor={theme.colors.ultraWhite} barStyle={'dark-content'} />
-      <View style={{ paddingTop: statusBarHeight(), flex: 1 }}>
-        <Navigation />
-      </View>
+      <StoreProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppInner />
+        </PersistGate>
+      </StoreProvider>
     </ThemeProvider>
   )
+}
+
+const AppInner: FC = () => {
+
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth])
+
+  return <>
+    <StatusBar backgroundColor={theme.colors.ultraWhite} barStyle={'dark-content'} />
+    <View style={{ paddingTop: statusBarHeight(), flex: 1 }}>
+      <Navigation />
+    </View>
+  </>
+
 }
