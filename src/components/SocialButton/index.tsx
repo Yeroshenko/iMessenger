@@ -13,7 +13,7 @@ export const SocialButton: FC<SocialButtonProps> = ({ style, onPress, children }
       ? <RippleSocialButtonWrap style={style} onPress={onPress} rippleColor={'rgba(0,0,0,.2)'}>
           {children}
         </RippleSocialButtonWrap>
-      : <SocialButtonWrap style={style} onPress={onPress} activeOpacity={0.8}>
+      : <SocialButtonWrap style={style} onPress={onPress} activeOpacity={0.4}>
           {children}
         </SocialButtonWrap>
     }

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { InputInnerProps, InputProps } from './types'
-import { InputWrapper, TextInput } from './styles'
+import { InputWrapper, TextInput, ErrorText } from './styles'
 
 export const Input: FC<InputProps> = ({ control, name, defaultValue = '', ...props }) => {
   if (control && !name) {
@@ -15,8 +15,8 @@ export const Input: FC<InputProps> = ({ control, name, defaultValue = '', ...pro
 
   return (
     <>
-      {control && name ? (
-        <Controller
+      {control && name
+        ? <Controller
           name={name}
           control={control}
           defaultValue={defaultValue}
@@ -24,23 +24,26 @@ export const Input: FC<InputProps> = ({ control, name, defaultValue = '', ...pro
             <InputInner value={value} onChangeText={onChange} {...props} />
           )}
         />
-      ) : (
-        <InputInner {...props} />
-      )}
+        : <InputInner {...props} />
+      }
     </>
   )
 }
 
-const InputInner: FC<InputInnerProps> = ({
-  style,
-  ref,
-  value,
-  autoFocus = false,
-  keyboardType = 'default',
-  placeholder,
-  onChangeText,
-  secureTextEntry = false
-}) => {
+const InputInner: FC<InputInnerProps> = (
+  {
+    style,
+    ref,
+    value,
+    autoFocus = false,
+    keyboardType = 'default',
+    placeholder,
+    onChangeText,
+    secureTextEntry = false,
+    hasError = false,
+    errorText
+  }
+) => {
   const [isFocused, setIsFocused] = useState(false)
 
   const onFocus = () => setIsFocused(true)
@@ -59,7 +62,9 @@ const InputInner: FC<InputInnerProps> = ({
         onChangeText={onChangeText}
         keyboardType={keyboardType}
         value={value}
+        hasError={hasError}
       />
+      {hasError && errorText && <ErrorText>{errorText}</ErrorText>}
     </InputWrapper>
   )
 }

@@ -8,7 +8,8 @@ export const theme: DefaultTheme = {
     primary: '#4460F1',
     grey: '#A9A6B6',
     dark: '#2C385B',
-    success: '#56F396'
+    success: '#56F396',
+    error: '#E73F3F'
   },
   fonts: {
     mainLight: 'Montserrat-Light',

@@ -1,25 +1,45 @@
 import React, { FC } from 'react'
+import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
 
 import { NAVIGATION } from '../../constants'
 import { FacebookIcon, GithubIcon, GoogleIcon } from '../../icons'
 import { Button, Divider, Input, ScreenContainer, SocialButton } from '../../components'
 import { AuthLink, AuthLinkText, AuthTitle, SocialButtons } from './styles'
+import { ILoginData } from '../../@interfaces'
+import { Alert } from 'react-native'
 
 const inputStyle = { marginBottom: 28 }
 const socialButtonStyle = { flex: 1, maxWidth: '30%' }
 
+
 export const SignIn: FC = () => {
   const navigation = useNavigation()
 
+  const { handleSubmit, control, formState: { errors } } = useForm({
+    mode: 'onTouched',
+    resolver: yupResolver(yup.object().shape({
+      email: yup.string().email('Enter correct email').required('Email is a required'),
+      password: yup.string().min(6, 'Min 6 charsets')
+    }))
+  })
+
   const navigateToSignUp = () => navigation.navigate(NAVIGATION.SIGN_UP)
+
+  const loginHandler = handleSubmit(async (formData: ILoginData) => {
+    Alert.alert(JSON.stringify(formData))
+  })
 
   return (
     <ScreenContainer>
       <AuthTitle>Sign in to iMessenger</AuthTitle>
-      <Input placeholder='Email' keyboardType='email-address' style={inputStyle} />
-      <Input placeholder='Password' secureTextEntry={true} style={inputStyle} />
-      <Button title='Login' />
+      <Input placeholder='Email' name='email' keyboardType='email-address' style={inputStyle} control={control}
+             errorText={errors.email?.message} hasError={errors.email} />
+      <Input placeholder='Password' name='password' secureTextEntry={true} style={inputStyle} control={control}
+             errorText={errors.password?.message} hasError={errors.password} />
+      <Button title='Login' onPress={loginHandler} />
       <AuthLink onPress={navigateToSignUp}>
         <AuthLinkText>Register</AuthLinkText>
       </AuthLink>

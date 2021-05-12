@@ -11,7 +11,7 @@ export const RippleButtonWrapper = styled(BaseButton)<ButtonStylesProps>`
   border-radius: 16px;
 `
 
-export const ButtonWrapper = styled.TouchableHighlight<ButtonStylesProps>`
+export const ButtonWrapper = styled.TouchableOpacity<ButtonStylesProps>`
   width: 100%;
   padding: 22px 16px;
   background-color: ${props => typeToBg(props.type, props.theme)};

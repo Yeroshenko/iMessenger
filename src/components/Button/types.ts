@@ -4,7 +4,7 @@ export type ButtonType = 'primary' | 'ghost'
 
 export type ButtonProps = {
   title: string
-  onPress?: () => void
+  onPress?: () => void | Promise<any>
   style?: ViewStyle
   type?: ButtonType
 }

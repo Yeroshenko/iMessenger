@@ -16,8 +16,11 @@ export type InputInnerProps = {
   style?: ViewStyle
   autoFocus?: boolean
   ref?: any
+  hasError?: boolean
+  errorText?: string
 }
 
 export type TextInputStyle = {
   isFocused: boolean
+  hasError: boolean
 }
