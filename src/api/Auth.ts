@@ -31,5 +31,9 @@ export class AuthApi {
   static checkAuth(listener: (user: FirebaseAuthTypes.User | null) => void) {
     return Auth.onAuthStateChanged(listener)
   }
+
+  static logout() {
+    return Auth.signOut()
+  }
 }
 
