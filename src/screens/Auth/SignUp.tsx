@@ -1,15 +1,17 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import { Alert } from 'react-native'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigation } from '@react-navigation/native'
 import { NAVIGATION } from '../../constants'
 import { Button, Input, ScreenContainer } from '../../components'
 import { AuthLink, AuthLinkText, AuthTitle } from './styles'
 import { IRegisterData } from '../../@interfaces'
-import { register } from '../../store/slices/auth'
+import { register, setRegistrationError } from '../../store/slices/auth'
+import { AppState } from '../../store'
 
 const inputStyle = { marginBottom: 28 }
 
@@ -20,6 +22,15 @@ interface IFormData extends IRegisterData {
 export const SignUp: FC = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
+  const { registrationError } = useSelector((state: AppState) => state.auth)
+
+  useEffect(() => {
+    dispatch(setRegistrationError(''))
+  }, [])
+
+  useEffect(() => {
+    registrationError && Alert.alert(registrationError)
+  }, [registrationError])
 
   const { handleSubmit, control, formState: { errors } } = useForm({
     mode: 'onTouched',
@@ -30,7 +41,6 @@ export const SignUp: FC = () => {
       passwordConfirm: yup.string().oneOf([yup.ref('password')], 'Passwords must match')
     }))
   })
-
 
   const navigateToSignIn = () => navigation.navigate(NAVIGATION.SIGN_IN)
 

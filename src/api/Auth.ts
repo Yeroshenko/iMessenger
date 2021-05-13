@@ -4,6 +4,9 @@ import { ILoginData, IRegisterData, IUser } from '../@interfaces'
 const Auth = auth()
 
 export class AuthApi {
+  static loginErrorCodes = ['auth/user-not-found', 'auth/wrong-password']
+  static registerErrorCodes = ['auth/email-already-in-use']
+
   static userTransformInfo(user: FirebaseAuthTypes.User) {
     return {
       email: user.email,

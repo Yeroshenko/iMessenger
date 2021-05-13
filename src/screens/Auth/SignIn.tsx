@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import { Alert } from 'react-native'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,7 +12,7 @@ import { Button, Divider, Input, ProgressLoader, ScreenContainer, SocialButton }
 import { AuthLink, AuthLinkText, AuthTitle, SocialButtons } from './styles'
 import { ILoginData } from '../../@interfaces'
 import { AppState } from '../../store'
-import { login } from '../../store/slices/auth'
+import { login, setAuthError } from '../../store/slices/auth'
 
 const inputStyle = { marginBottom: 28 }
 const socialButtonStyle = { flex: 1, maxWidth: '30%' }
@@ -20,7 +21,7 @@ const socialButtonStyle = { flex: 1, maxWidth: '30%' }
 export const SignIn: FC = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const { isLoading } = useSelector((state: AppState) => state.auth)
+  const { isLoading, authError } = useSelector((state: AppState) => state.auth)
 
   const { handleSubmit, control, formState: { errors } } = useForm({
     mode: 'onTouched',
@@ -35,6 +36,14 @@ export const SignIn: FC = () => {
   const loginHandler = handleSubmit(async (formData: ILoginData) => {
     dispatch(login(formData))
   })
+
+  useEffect(() => {
+    dispatch(setAuthError(''))
+  }, [])
+
+  useEffect(() => {
+    authError && Alert.alert(authError)
+  }, [authError])
 
   return (
     <ScreenContainer>
