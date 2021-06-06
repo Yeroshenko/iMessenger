@@ -12,7 +12,7 @@ import { Button, Divider, Input, ProgressLoader, ScreenContainer, SocialButton }
 import { AuthLink, AuthLinkText, AuthTitle, SocialButtons } from './styles'
 import { ILoginData } from '../../@interfaces'
 import { AppState } from '../../store'
-import { login, setAuthError } from '../../store/slices/auth'
+import { googleSignIn, login, setAuthError } from '../../store/slices/auth'
 
 const inputStyle = { marginBottom: 28 }
 const socialButtonStyle = { flex: 1, maxWidth: '30%' }
@@ -32,10 +32,12 @@ export const SignIn: FC = () => {
   })
 
   const navigateToSignUp = () => navigation.navigate(NAVIGATION.SIGN_UP)
-
   const loginHandler = handleSubmit(async (formData: ILoginData) => {
     dispatch(login(formData))
   })
+  const googleLoginHandler = () => {
+    dispatch(googleSignIn())
+  }
 
   useEffect(() => {
     dispatch(setAuthError(''))
@@ -59,7 +61,7 @@ export const SignIn: FC = () => {
       </AuthLink>
       <Divider style={{ marginTop: 64, marginBottom: 40 }}>or continue with</Divider>
       <SocialButtons>
-        <SocialButton style={socialButtonStyle}>
+        <SocialButton style={socialButtonStyle} onPress={googleLoginHandler}>
           <GoogleIcon size={32} />
         </SocialButton>
         <SocialButton style={socialButtonStyle}>

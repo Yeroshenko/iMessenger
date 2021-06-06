@@ -14,16 +14,12 @@
       },
       "oauth_client": [
         {
-          "client_id": "925956556129-s5lhts9tadmbeuelobuk3rc1lo92c6uf.apps.googleusercontent.com",
+          "client_id": "925956556129-ge7ibkfrkrso4ih22efg1oidd0bp36d1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.imessenger",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            "certificate_hash": "999e0f1f1184ed5b7978687396e28cb0a2a6a44c"
           }
-        },
-        {
-          "client_id": "925956556129-k2gsv2ftt41fuh81ktqa84enef7k42gt.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [

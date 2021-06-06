@@ -79,7 +79,18 @@ export const logout = (): AppThunk => async (dispatch) => {
   } catch (err) {
     console.log({ err })
   }
+}
 
+export const googleSignIn = (): AppThunk => async (dispatch) => {
+  try {
+    const { user } = await AuthApi.googleSignIn()
+    const { displayName, uid, photoURL, email } = user
+
+    dispatch(setUser({ displayName, uid, photoURL, email } as IUser))
+
+  } catch (err) {
+    console.log({ err })
+  }
 }
 
 export default authSlice.reducer

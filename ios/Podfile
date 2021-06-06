@@ -12,6 +12,8 @@ target 'iMessenger' do
     :hermes_enabled => false
   )
 
+  pod 'GoogleSignIn', '~> 5.0.2'
+
   target 'iMessengerTests' do
     inherit! :complete
     # Pods for testing

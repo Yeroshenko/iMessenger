@@ -1,5 +1,6 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { ILoginData, IRegisterData, IUser } from '../@interfaces'
+import { GoogleSignin } from '@react-native-google-signin/google-signin'
 
 const Auth = auth()
 
@@ -12,7 +13,7 @@ export class AuthApi {
       email: user.email,
       uid: user.uid,
       displayName: user.displayName,
-      photoUrl: user.photoURL
+      photoURL: user.photoURL
     } as IUser
   }
 
@@ -30,6 +31,13 @@ export class AuthApi {
 
   static checkAuth(listener: (user: FirebaseAuthTypes.User | null) => void) {
     return Auth.onAuthStateChanged(listener)
+  }
+
+  static async googleSignIn() {
+    const { idToken } = await GoogleSignin.signIn()
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken)
+
+    return auth().signInWithCredential(googleCredential)
   }
 
   static logout() {
